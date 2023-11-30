@@ -1,0 +1,32 @@
+#include <dt-bindings/zmk/keys.h>
+
+#define stringify(x) #x
+#define __hash #
+#define __wrap(x) x
+#define make_label(x) __wrap(__hash)x
+
+#define SHIFT_PAIR(unshifted, shifted, reference, name)   \
+        /omit-if-no-ref/ reference: name {                \
+	    compatible = "zmk,behavior-mod-morph";        \
+	    label = stringify(unshifted ## _ ## shifted); \
+            make_label(binding-cells) = <0>;              \
+	    bindings = <&kp unshifted>, <&kp shifted>;    \
+	    mods = <(MOD_LSFT|MOD_RSFT)>;                 \
+	};
+
+SHIFT_PAIR(N3, PIPE, n3pipe, n3_pipe)
+SHIFT_PAIR(N2, AT, n2at, n2_at)
+SHIFT_PAIR(N1, DLLR, n1dllr, n1_dollar)
+SHIFT_PAIR(N0, HASH, n0hash, n0_hash)
+SHIFT_PAIR(N4, PRCNT, n4prcnt, n4_percent)
+
+SHIFT_PAIR(N7, CARET, n7caret, n7_caret)
+SHIFT_PAIR(N6, LPAR, n6lpar, n6_lparen)
+SHIFT_PAIR(N5, TILDE, n5tilde, n5_tilde)
+SHIFT_PAIR(N9, RPAR, n9rpar, n9_rparen)
+SHIFT_PAIR(N8, AMPS, n8amps, n8_ampersand)
+
+SHIFT_PAIR(SQT, QMARK, sqtqmark, apos_question)
+SHIFT_PAIR(DOT, GRAVE, dotgrave, dot_grave)
+SHIFT_PAIR(COMMA, UNDER, commaunder, comma_under)
+SHIFT_PAIR(DQT, EXCL, dqtexcl, dquote_exclamation)
